@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:id="@+id/main_root"
+tools:context=".activity.MainActivity"
+    >
+
+<FrameLayout
+    android:background="@color/titlebar_background"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@+id/main_bottom_tab">
+</FrameLayout>
+    <ListView
+        android:id="@+id/luncher_listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/titlebar_text">
+
+    </ListView>
+
+<LinearLayout
+    android:layout_gravity="bottom"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/bt_home"
+        android:text="home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:text="play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/bt_me"
+        android:text="me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
+</FrameLayout>

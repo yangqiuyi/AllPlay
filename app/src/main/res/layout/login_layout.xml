@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <include  layout="@layout/titlebar" />
+
+    <EditText
+        android:text="732308967@qq.com"
+        android:id="@+id/et_login_em"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/et_Email"/>
+
+    <EditText
+        android:text="yangqiuyi0914"
+        android:id="@+id/et_login_pw"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/et_Password"/>
+
+    <Button
+        android:id="@+id/bt_login_by_email"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_shape"
+        android:textColor="@color/titlebar_text"
+        android:text="@string/bt_send"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_forget_pw"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="30dp"
+        />
+    <Button
+        android:id="@+id/bt_em_signup"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:text="@string/et_Email_SignUp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_signup_shape"
+        android:textColor="@color/titlebar_background"/>
+
+</LinearLayout>
