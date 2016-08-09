@@ -1,4 +1,4 @@
-package com.example.mylibrary;
+package com.example.testmodule;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

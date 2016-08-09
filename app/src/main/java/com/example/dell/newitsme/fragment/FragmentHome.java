@@ -1,7 +1,5 @@
 package com.example.dell.newitsme.fragment;
 
-import android.app.Application;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,12 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.example.dell.newitsme.R;
 import com.example.dell.newitsme.adapter.LineHotListAdapter;
 import com.example.dell.newitsme.event.TurtleEvent;
 import com.example.dell.newitsme.event.TurtleEventType;
-
 import de.greenrobot.event.EventBus;
 
 public class FragmentHome extends Fragment {

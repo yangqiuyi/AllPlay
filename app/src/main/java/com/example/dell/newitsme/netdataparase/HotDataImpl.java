@@ -1,8 +1,7 @@
-package com.example.dell.newitsme.netdata;
+package com.example.dell.newitsme.netdataparase;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.ListView;
+
 import com.example.dell.newitsme.adapter.LineHotListAdapter;
 import com.example.dell.newitsme.event.TurtleEvent;
 import com.example.dell.newitsme.event.TurtleEventType;

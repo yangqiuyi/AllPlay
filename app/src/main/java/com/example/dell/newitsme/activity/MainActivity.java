@@ -1,17 +1,17 @@
 package com.example.dell.newitsme.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import com.example.dell.newitsme.R;
+import com.example.dell.newitsme.activity.base.ActivityCBase;
 import com.example.dell.newitsme.fragment.FragmentHome;
 import com.example.dell.newitsme.fragment.FragmentMe;
 import com.example.dell.newitsme.util.Devices;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener{
+public class MainActivity extends ActivityCBase implements View.OnClickListener{
+
     private FragmentHome _home;
     private FragmentMe _Me;
     private boolean isClicked = false;//按键防抖

@@ -1,29 +1,20 @@
 package com.example.dell.newitsme.net;
 
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Handler;
-import android.text.TextUtils;
 import android.util.Log;
-import com.android.volley.RequestQueue;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.dell.newitsme.Consts;
-import com.example.dell.newitsme.activity.FirstActivity;
-import com.example.dell.newitsme.activity.MainActivity;
 import com.example.dell.newitsme.event.TurtleEvent;
 import com.example.dell.newitsme.event.TurtleEventType;
-import com.example.dell.newitsme.util.JsonHelper;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
-import java.util.Random;
 
 import de.greenrobot.event.EventBus;
 
@@ -73,7 +64,7 @@ public class ApiUrls {
                 Log.d(TAG,"updateApiMap onResponse:" + response);
                 //md5 省略逻辑
                 loadApiMap(response);
-               // FirstActivity.get().sendEmptyMessage(0);换成eventBUS
+               // LauncherActivity.get().sendEmptyMessage(0);换成eventBUS
                 //eventBUS
                 EventBus.getDefault().post(new TurtleEvent(TurtleEventType.TYPE_API_DATA_OK));//发送消息事件
             }
