@@ -14,7 +14,6 @@ import com.example.dell.newitsme.util.Devices;
 public class MainActivity extends FragmentActivity implements View.OnClickListener{
     private FragmentHome _home;
     private FragmentMe _Me;
-    public  ListView mListView;
     private boolean isClicked = false;//按键防抖
     private static final String TAG = "MainActivity";
 
@@ -24,8 +23,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         setContentView(R.layout.activity_main);
         Devices.initDisplayMetrics(getWindowManager());
         //
-        mListView = (ListView) findViewById(R.id.luncher_listview);
-        //
+
         Button home = (Button)findViewById(R.id.bt_home);
         Button me = (Button)findViewById(R.id.bt_me);
         home.setOnClickListener(this);

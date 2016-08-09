@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.ListView;
 import com.example.dell.newitsme.adapter.LineHotListAdapter;
+import com.example.dell.newitsme.event.TurtleEvent;
+import com.example.dell.newitsme.event.TurtleEventType;
 import com.example.dell.newitsme.model.LiveItemModel;
 import com.example.dell.newitsme.net.ApiListener;
 import com.example.dell.newitsme.net.ClientApi;
@@ -11,6 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 //数据请求， 解析数据
 public class HotDataImpl implements IHotData {
@@ -30,7 +34,7 @@ public class HotDataImpl implements IHotData {
                 if (response == null) return;
                 Log.i(TAG, "response = " + response.toString());
                 mAdapter.setData(paraseLiveItemData(response));//把获得的数据传给Adapter
-                //ui 点击重试
+                EventBus.getDefault().post(new TurtleEvent(TurtleEventType.TYPE_HOT_DATA_OK));//发送消息事件
             }
 
             @Override
@@ -56,5 +60,6 @@ public class HotDataImpl implements IHotData {
         }
         return itemList;
     }
+
 
 }

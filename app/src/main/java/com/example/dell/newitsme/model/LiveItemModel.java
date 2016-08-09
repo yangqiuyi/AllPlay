@@ -7,16 +7,19 @@ import org.json.JSONObject;
 /***
  *   lives: [
      {
+
      city: "",
      country: "CN",
      group: 20003,
      id: "6763243717326502",
+
          creator: {
          uid: 2241746,
          nick: "Anna Garrison",
          portrait: "9c1564d2ed6906028e1b248809b19dcf6852d3d8_p_2241746.jpg",
          gender: 0
        },
+
      image: "",
      online_users: 8,
      pub_stat: 1,
@@ -30,7 +33,7 @@ import org.json.JSONObject;
      real_score: 20000008
      },
  *
- * */
+ * */ //房间模型，
 public class LiveItemModel {
     public static final String TAG = "LiveItemModel";
 
@@ -63,6 +66,7 @@ public class LiveItemModel {
         liveItem.city = jsonObject.optString("city");
         liveItem.name = jsonObject.optString("name");
         liveItem.image = jsonObject.optString("image");
+        liveItem.share_addr = jsonObject.optString("share_addr");
 
         JSONObject creator = jsonObject.optJSONObject("creator");
         if (creator != null){
@@ -71,48 +75,5 @@ public class LiveItemModel {
         return liveItem;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setGroup(int group) {
-        this.group = group;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public int getGroup() {
-        return group;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public UserInfoModel getLiveCreator() {
-        return liveCreator;
-    }
 }

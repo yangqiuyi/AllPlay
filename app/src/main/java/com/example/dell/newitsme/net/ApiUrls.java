@@ -15,6 +15,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.dell.newitsme.Consts;
 import com.example.dell.newitsme.activity.FirstActivity;
 import com.example.dell.newitsme.activity.MainActivity;
+import com.example.dell.newitsme.event.TurtleEvent;
+import com.example.dell.newitsme.event.TurtleEventType;
 import com.example.dell.newitsme.util.JsonHelper;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Random;
+
+import de.greenrobot.event.EventBus;
 
 
 public class ApiUrls {
@@ -69,8 +73,9 @@ public class ApiUrls {
                 Log.d(TAG,"updateApiMap onResponse:" + response);
                 //md5 省略逻辑
                 loadApiMap(response);
-                FirstActivity.get().sendEmptyMessage(0);
+               // FirstActivity.get().sendEmptyMessage(0);换成eventBUS
                 //eventBUS
+                EventBus.getDefault().post(new TurtleEvent(TurtleEventType.TYPE_API_DATA_OK));//发送消息事件
             }
         }, new Response.ErrorListener() {
             @Override

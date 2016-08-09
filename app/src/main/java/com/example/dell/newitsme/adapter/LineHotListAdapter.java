@@ -22,7 +22,6 @@ public class LineHotListAdapter extends BaseAdapter implements IHotData{
         private  List<LiveItemModel>  mDatas = new ArrayList<>();
         private  IHotData mIHotData;//接口
         private static final String TAG = "LineHotListAdapter";
-
         public LineHotListAdapter(Context context){
             inflater = LayoutInflater.from(context);
             mIHotData = new HotDataImpl(this);
@@ -33,10 +32,10 @@ public class LineHotListAdapter extends BaseAdapter implements IHotData{
              mIHotData.requestHot();//调用，线上请求数据
         }
 
-        public void setData(List<LiveItemModel> data){//被HotDataImpl的requestHot()调用，在requestHot()获得数据后，传给适配器
-           if(data == null)return;
+        public void setData(List<LiveItemModel> liveItem){//被HotDataImpl的requestHot()调用，在requestHot()获得数据后，传给适配器
+           if(liveItem == null)return;
 
-           mDatas = data;
+           mDatas = liveItem;
            notifyDataSetChanged();
         }
 
@@ -66,14 +65,25 @@ public class LineHotListAdapter extends BaseAdapter implements IHotData{
                 viewHolder.name = (TextView) view.findViewById(R.id.user_name);
                 viewHolder.people = (TextView) view.findViewById(R.id.guankan);
                 viewHolder.picture = (SimpleDraweeView) view.findViewById(R.id.user_picture);
+                viewHolder.touxiang = (SimpleDraweeView) view.findViewById(R.id.touxiang);
                 view.setTag(viewHolder);
             }
 
             ViewHolder viewHolder = (ViewHolder) view.getTag();
-            viewHolder.address.setText(mDatas.get(position).city);
-            viewHolder.name.setText(mDatas.get(position).name);
-            viewHolder.people.setText(String.valueOf(mDatas.get(position).online_users));
-            viewHolder.picture.setImageURI(ImageUrlParser.coverImageUrl( mDatas.get(position).liveCreator.portrait));
+            LiveItemModel  liveItem =  mDatas.get(position);
+            //
+            if (liveItem.city == null || "".equals(liveItem.city)){
+                viewHolder.address.setText("难道是火星？");
+            }else{
+                viewHolder.address.setText(liveItem.city);
+            }
+            //
+            viewHolder.name.setText(liveItem.name);
+            viewHolder.people.setText(String.valueOf(liveItem.online_users));
+            //portrait 链接
+            String portrait =  liveItem.liveCreator.portrait;//每一个item在ArrayList中的位置的liveCreator(UserInfoModel)的图片的链接
+            viewHolder.picture.setImageURI(ImageUrlParser.coverImageUrl(portrait));//获得方面图片链接的方法ImageUrlParser.coverImageUrl
+            viewHolder.touxiang.setImageURI(ImageUrlParser.avatarRoomHeadImageUrl(portrait));//获得头像图片链接的方法
             return view;
         }
 
@@ -82,6 +92,7 @@ public class LineHotListAdapter extends BaseAdapter implements IHotData{
           public TextView name;
           public TextView people;
           public SimpleDraweeView picture;
+          public SimpleDraweeView touxiang;
       }
 
     }
