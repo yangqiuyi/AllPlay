@@ -10,21 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.example.dell.newitsme.R;
-import com.example.dell.newitsme.net.ApiListener;
-import com.example.dell.newitsme.net.ApiToken;
-import com.example.dell.newitsme.net.ClientApi;
-import com.example.dell.newitsme.util.Encrypt;
-import com.example.dell.newitsme.util.StrUtil;
-import com.example.dell.newitsme.util.ToastUtil;
 import org.json.JSONObject;
-
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
+import com.example.net.ApiListener;
+import com.example.net.ClientApi;
+import com.example.util.StrUtil;
+import com.example.util.ToastUtil;
 
 public class LoginByEmailActivity extends Activity {
     private static final String TAG = "LoginByEmailActivity";

@@ -1,11 +1,10 @@
 package com.example.dell.newitsme.activity.base;
 
-import android.support.v7.app.AppCompatActivity;
-
+import com.example.controller.ActivityCBase;
 import de.greenrobot.event.EventBus;
 
 //专门处理事件相关
-public abstract class ActivityEventBase extends AppCompatActivity {
+public abstract class ActivityEventBase extends ActivityCBase {
     protected Boolean isRegisterEventBus = false;
 
     protected void registerEventBus() {
@@ -20,5 +19,11 @@ public abstract class ActivityEventBase extends AppCompatActivity {
             EventBus.getDefault().unregister(this);
             isRegisterEventBus = false;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterEventBus();
     }
 }

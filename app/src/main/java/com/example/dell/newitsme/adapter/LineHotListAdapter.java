@@ -7,32 +7,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import com.example.controller.ActivityCBase;
+import com.example.controller.HotDataController;
 import com.example.dell.newitsme.R;
-import com.example.dell.newitsme.model.LiveItemModel;
-import com.example.dell.newitsme.netdataparase.HotDataImpl;
-import com.example.dell.newitsme.netdataparase.IHotData;
-import com.example.dell.newitsme.util.ImageUrlParser;
+import com.example.model.LiveItemModel;
+import com.example.net.ImageUrlParser;
 import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 import java.util.List;
 
 //数据和UI结合
-public class LineHotListAdapter extends BaseAdapter implements IHotData{
+public class LineHotListAdapter extends BaseAdapter{
+
         private  LayoutInflater inflater;//LayoutInflater是用来找res/layout/下的xml布局文件，并且实例化
         private  List<LiveItemModel>  mDatas = new ArrayList<>();
-        private  IHotData mIHotData;//接口
+        private HotDataController _hotDataController;
         private static final String TAG = "LineHotListAdapter";
-        public LineHotListAdapter(Context context){
-            inflater = LayoutInflater.from(context);
-            mIHotData = new HotDataImpl(this);
+
+        public LineHotListAdapter(ActivityCBase activityCBase){
+            inflater = LayoutInflater.from(activityCBase);
+            _hotDataController = new HotDataController(activityCBase);
         }
 
-        @Override
-        public void requestHot() {//这个方法只是为了提供一个方法给适配器引用IHotData的requestHot()去请求数据
-             mIHotData.requestHot();//调用，线上请求数据
+        public void requestHot() {
+            _hotDataController.requestHot();
         }
 
-        public void setData(List<LiveItemModel> liveItem){//被HotDataImpl的requestHot()调用，在requestHot()获得数据后，传给适配器
+        public void setData(List<LiveItemModel> liveItem){
            if(liveItem == null)return;
 
            mDatas = liveItem;
@@ -78,7 +79,7 @@ public class LineHotListAdapter extends BaseAdapter implements IHotData{
                 viewHolder.address.setText(liveItem.city);
             }
             //
-            viewHolder.name.setText(liveItem.name);
+            viewHolder.name.setText(liveItem.liveCreator.nick);
             viewHolder.people.setText(String.valueOf(liveItem.online_users));
             //portrait 链接
             String portrait =  liveItem.liveCreator.portrait;//每一个item在ArrayList中的位置的liveCreator(UserInfoModel)的图片的链接

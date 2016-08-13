@@ -7,13 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-
-import com.example.dell.newitsme.Animation.AnimationUtils;
 import com.example.dell.newitsme.R;
-import com.example.dell.newitsme.net.ApiListener;
-import com.example.dell.newitsme.net.ClientApi;
-import com.example.dell.newitsme.util.StrUtil;
-import com.example.dell.newitsme.util.ToastUtil;
+import com.example.net.ApiListener;
+import com.example.net.ClientApi;
+import com.example.util.Animation.AnimationUtils;
+import com.example.util.StrUtil;
+import com.example.util.ToastUtil;
 
 import org.json.JSONObject;
 
@@ -23,12 +22,10 @@ public class SignUpActivity extends Activity {
     public static   String email;
     public static  String password;
 
-     EditText editText_name;
-     EditText editText_email;
-     EditText editText_password;
-     Context context ;
-
-    //private FrameLayout _roomRootLayout;
+     private EditText editText_name;
+     private EditText editText_email;
+     private EditText editText_password;
+     private Context context ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +38,6 @@ public class SignUpActivity extends Activity {
         editText_name  = (EditText)findViewById(R.id.et_name);
         editText_email = (EditText)findViewById(R.id.et_email);
         editText_password = (EditText)findViewById(R.id.et_password);
-        //
-       /* email = editText_email.getText().toString();
-        password = editText_password.getText().toString();*/
 
        findViewById(R.id.bt_signup).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +123,6 @@ public class SignUpActivity extends Activity {
     }
 
     public void flingUp() {
-
         AnimationUtils.hideToTop(editText_name, -1, null);
     }
 }

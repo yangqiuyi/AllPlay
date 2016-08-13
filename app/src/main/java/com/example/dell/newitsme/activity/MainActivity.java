@@ -5,17 +5,17 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import com.example.dell.newitsme.R;
-import com.example.dell.newitsme.activity.base.ActivityCBase;
+import com.example.dell.newitsme.activity.base.ActivityEventBase;
 import com.example.dell.newitsme.fragment.FragmentHome;
 import com.example.dell.newitsme.fragment.FragmentMe;
-import com.example.dell.newitsme.util.Devices;
+import com.example.util.Devices;
 
-public class MainActivity extends ActivityCBase implements View.OnClickListener{
+public class MainActivity extends ActivityEventBase implements View.OnClickListener{
 
     private FragmentHome _home;
     private FragmentMe _Me;
     private boolean isClicked = false;//按键防抖
-    private static final String TAG = "MainActivity";
+    private  final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class MainActivity extends ActivityCBase implements View.OnClickListener{
 
     private void initFragmentLayout(){
         _home = new FragmentHome();
+        _home.init(this);
         _Me = new FragmentMe();
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

@@ -4,17 +4,14 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import com.example.dell.newitsme.net.ClientApi;
-import com.example.dell.newitsme.net.Queue;
-import com.example.dell.newitsme.util.Devices;
-import com.facebook.common.logging.FLog;
+import com.example.net.ClientApi;
+import com.example.net.Queue;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.backends.okhttp.OkHttpImagePipelineConfigFactory;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.listener.RequestListener;
 import com.facebook.imagepipeline.listener.RequestLoggingListener;
 import com.squareup.okhttp.OkHttpClient;
-
 import java.util.HashSet;
 import java.util.Set;
 

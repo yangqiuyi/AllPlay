@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import com.example.dell.newitsme.R;
-import com.example.dell.newitsme.activity.base.ActivityCBase;
-import com.example.dell.newitsme.event.TurtleEvent;
-import com.example.dell.newitsme.event.TurtleEventType;
+import com.example.dell.newitsme.activity.base.ActivityEventBase;
+import com.example.event.TurtleEvent;
+import com.example.event.TurtleEventType;
 
-public class LauncherActivity extends ActivityCBase {
+public class LauncherActivity extends ActivityEventBase {
     private Activity mActivity;
     private static final String TAG = "LauncherActivity";
 

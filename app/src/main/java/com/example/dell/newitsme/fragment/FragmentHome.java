@@ -8,10 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.controller.ActivityCBase;
 import com.example.dell.newitsme.R;
 import com.example.dell.newitsme.adapter.LineHotListAdapter;
-import com.example.dell.newitsme.event.TurtleEvent;
-import com.example.dell.newitsme.event.TurtleEventType;
+import com.example.event.TurtleEvent;
+import com.example.event.TurtleEventType;
+import com.example.model.LiveItemModel;
+import java.util.List;
 import de.greenrobot.event.EventBus;
 
 public class FragmentHome extends Fragment {
@@ -19,6 +23,15 @@ public class FragmentHome extends Fragment {
     private static final String TAG = "FragmentHome";
     private ListView mListView;
     private TextView mTextView;
+    private LineHotListAdapter _hotListAdapter;
+    private ActivityCBase _activityCBase;
+
+    public FragmentHome() {
+    }
+
+    public void init(ActivityCBase activityCBase){
+        _activityCBase = activityCBase;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,21 +39,25 @@ public class FragmentHome extends Fragment {
 
         mListView = (ListView)root.findViewById(R.id.listviw);
         mTextView =  (TextView) root.findViewById(R.id.tv_loading);
-        LineHotListAdapter adapter = new LineHotListAdapter(getActivity());
-        mListView.setAdapter(adapter);
+        _hotListAdapter = new LineHotListAdapter(_activityCBase);
+        mListView.setAdapter(_hotListAdapter);
 
         //这里是接收事件类的注册事件
         EventBus.getDefault().register(this);
 
-        adapter.requestHot();
+        _hotListAdapter.requestHot();
         return root;
     }
+
     /*如果使用onEventMainThread作为订阅函数，那么不论事件是在哪个线程中发布出来的，
     onEventMainThread都会在UI线程中执行，接收事件就会在UI线程中运行*/
-      //接收消息
     public void onEventMainThread(TurtleEvent event) {
         int type = event.getType();
         if(type == TurtleEventType.TYPE_HOT_DATA_OK ){
+            List<LiveItemModel> datas = event.getParam();
+            if (datas == null)return;
+            _hotListAdapter.setData(datas);//把获得的数据传给Adapter
+
             mListView.setVisibility(View.VISIBLE);
             mTextView.setVisibility(View.GONE);
             Log.i(TAG, "TYPE_HOT_DATA_OK");
