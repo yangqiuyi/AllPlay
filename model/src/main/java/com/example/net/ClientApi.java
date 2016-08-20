@@ -133,22 +133,6 @@ public class ClientApi {
         callCmd_POST(USER_LOGIN, param, new ApiListener() {
             @Override
             public void onResponse(JSONObject response) {      //   回调处  ，回调处在callCmd_POST（）
-
-                int err = -1;
-                if (response != null) {
-                    err = response.optInt("dm_error", -1);
-                    if (err == 0) {
-                        String token = response.optString("session", "");
-                        int uid = response.optInt("uid");
-                        ApiToken.inst().save(uid, token);
-
-                       // ClientApi.info
-                        //需要重试机制
-                    }
-                }
-                if (err != 0) {
-                  //  MixPanel.inst().track(MixPanel.Login_with_Token_error, err);
-                }
                 listener.onResponse(response);
             }
 
@@ -158,6 +142,14 @@ public class ClientApi {
           //      MixPanel.inst().track(MixPanel.Login_with_Token_failed, exceptionMessage == null ? "unknow" : exceptionMessage.toString());
             }
         });
+    }
+
+    /*获取用户的个人资料*/
+    public static void info(int uid,final ApiListener listener)
+    {
+        Map params = new HashMap();
+        params.put("id", uid);
+        callCmd_GET(USER_INFO, params, listener);
     }
 
     private static String mapToKeyValue(Map params)   //?

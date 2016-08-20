@@ -9,25 +9,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.example.dell.newitsme.R;
 import org.json.JSONObject;
+
 import java.util.PriorityQueue;
 
 import com.example.net.ApiListener;
+import com.example.SelfInfo;
 import com.example.net.ClientApi;
+import com.example.util.SharedPreferencesUtil;
 import com.example.util.StrUtil;
 import com.example.util.ToastUtil;
 
 public class LoginByEmailActivity extends Activity {
     private static final String TAG = "LoginByEmailActivity";
-    Context context ;
-    EditText mEditTextEmail;
-    EditText mEditTextPassword;
-    Button mButtonLogin;
+    private Context context ;
+    private EditText mEditTextEmail;
+    private EditText mEditTextPassword;
+    private Button mButtonLogin;
 
-    String name;
-    String password;
-    PriorityQueue priorityQueue;
+    private String name;
+    private String password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,37 +83,65 @@ public class LoginByEmailActivity extends Activity {
         //{"uid":3000957,"session":"11G+5VWz+sKPsqHsgA3E5pE9WSmokZF5ajLn36oWjasEI=","error_msg":"操作成功","dm_error":0}
         ClientApi.inst().loginByEmail(password, name, new ApiListener() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(final JSONObject response) {
                 if(response == null)return;
-
                 Log.i(TAG, "response = " + response.toString());
-                ToastUtil.showToastLong(context,"onResponse = " + response.toString());
 
-                int dm_error = response.optInt("dm_error", -1);//根据JSONO返回的关键字dm_error，给dm_error赋值
-                switch (dm_error){
-                    case 0:{ //ok
-                        Intent intent = new Intent();
-                        intent.setClass(context, MainActivity.class);
-                        startActivity(intent);
-                        break;
-                    }
-                    case 404:{
-                        ToastUtil.showToastLong(context,getString(R.string.no_user));
-                        break;
-                    }
-                    case 403:{
-                        ToastUtil.showToastLong(context,getString(R.string.password_error));
-                        break;
-                    }
-                    case -1:{
-                        ToastUtil.showToastLong(context,getString(R.string.network_no_avaliable));
-                        break;
-                    }
-                    default: {ToastUtil.showToastLong(context,getString(R.string.register_fail));
-                        Log.i(TAG,"response = " + response.toString());
+                int dm_error = -1;//赋初始值
+                if (response != null) {
+                    dm_error = response.optInt("dm_error", -1);
+                    if (dm_error == 0) {//ok
+                        final  String token = response.optString("session", "");
+                        final int uid = response.optInt("uid");
+
+                        //获取个人信息
+                        ClientApi.info(uid, new ApiListener(){
+                            @Override
+                            public void onResponse(JSONObject response){
+                                int dm_error = -1;//赋初始值
+
+                                if (response != null){
+                                    Log.i(TAG,response.toString());
+
+                                    dm_error = response.optInt("dm_error", -1);//这里需要解"dm_error"字段，如果为空，则默认是-1
+                                    if (dm_error == 0){
+                                        SelfInfo.inst()._userInfo.updateFromJson(response);//获得个人信息,在内存里面保存了个人信息
+
+                                        //SharedPreferencesUtil   把返回的response 个人信息保存到本地  保存到的是json字段 String类型
+                                        SharedPreferencesUtil.setParam(context,SharedPreferencesUtil.KEY_SAVE_USERINFO,response.toString());
+
+                                        Intent intent = new Intent(context,MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+
+                                }
+                            }
+                            @Override
+                            public void onErrorResponse(int statusCode, String exceptionMessage) {
+                                   Log.i(TAG,"错误");
+                            }
+                        });
+                    }else {
+                        switch (dm_error){
+                            case 404:{
+                                ToastUtil.showToastLong(context,getString(R.string.no_user));
+                                break;
+                            }
+                            case 403:{
+                                ToastUtil.showToastLong(context,getString(R.string.password_error));
+                                break;
+                            }
+                            case -1:{
+                                ToastUtil.showToastLong(context,getString(R.string.network_no_avaliable));
+                                break;
+                            }
+                            default: {ToastUtil.showToastLong(context,getString(R.string.register_fail));
+                                Log.i(TAG,"response = " + response.toString());
+                            }
+                        }
                     }
                 }
-
             }
 
             @Override

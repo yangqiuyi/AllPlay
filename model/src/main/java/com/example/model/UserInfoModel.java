@@ -13,11 +13,13 @@ import org.json.JSONObject;
 
 public class UserInfoModel {
 
-    public String uid;
+    public int uid;
     public String nick;
     public String portrait;
     public int gender;
-
+    public  String location;
+    public int ulevel;
+    public  String description;
 
     public void updateFromJson(JSONObject jsonObject) {
         if (jsonObject == null){
@@ -26,32 +28,13 @@ public class UserInfoModel {
         gender = jsonObject.optInt("gender",gender);
         nick = jsonObject.optString("nick", nick);
         portrait = jsonObject.optString("portrait",portrait);
+        uid = jsonObject.optInt("uid",uid);
+        gender = jsonObject.optInt("gender");
+        description  = jsonObject.optString("description");
+        ulevel  = jsonObject.optInt("ulevel");
 
     }
 
-    public String getNick() {
-        return nick;
-    }
-
-    public String getPortrait() {
-        return portrait;
-    }
-
-    public int getGender() {
-        return gender;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
-    }
-
-    public void setPortrait(String portrait) {
-        this.portrait = portrait;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
 
 
 

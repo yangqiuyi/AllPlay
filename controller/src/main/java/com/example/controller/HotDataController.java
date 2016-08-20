@@ -11,7 +11,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import de.greenrobot.event.EventBus;
-
+/*
+               解析数据*/
 public class HotDataController extends ControllerBase{
 
     private final String TAG = "HotDataController";

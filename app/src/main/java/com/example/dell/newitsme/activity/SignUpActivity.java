@@ -16,6 +16,9 @@ import com.example.util.ToastUtil;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 public class SignUpActivity extends Activity {
 
     private static final String TAG = "SignUpActivity";
@@ -26,7 +29,8 @@ public class SignUpActivity extends Activity {
      private EditText editText_email;
      private EditText editText_password;
      private Context context ;
-
+     private HashSet hashSet;
+    private HashMap hashMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
