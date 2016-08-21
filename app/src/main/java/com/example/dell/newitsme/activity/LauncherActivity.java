@@ -24,7 +24,7 @@ import de.greenrobot.event.EventBus;
 public class LauncherActivity extends ActivityEventBase {
     private Activity mActivity;
     private static final String TAG = "LauncherActivity";
-    private boolean isHasUserInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,10 +59,9 @@ public class LauncherActivity extends ActivityEventBase {
                     JSONObject jsonObject = JsonHelper.jsonFromString(userString);
                     JSONObject user = jsonObject.optJSONObject("user");
                     /*  "user":{"uid":3000957,"gender":0,"nick":"yabber0914","location":"","ulevel":2,"description":"","portrait":""}, */
-                    UserInfoModel selfInfo = SelfInfo.inst()._userInfo;
-                    selfInfo.updateFromJson(user);
+                    SelfInfo.inst()._userInfo.updateFromJson(user);
                  ;
-                    ClientApi.info(selfInfo.uid,new ApiListener() { //解析本地数据到内存之后，检查token有没有过期
+                    ClientApi.info(SelfInfo.inst()._userInfo.uid,new ApiListener() { //解析本地数据到内存之后，检查token有没有过期
                         @Override
                         public void onResponse(JSONObject response) {
                             if (response == null) {
@@ -73,6 +72,12 @@ public class LauncherActivity extends ActivityEventBase {
                                 Log.e(TAG, "ClientApi.info,user maybe deleted,goto relogin");
                                 EventBus.getDefault().post(new TurtleEvent(TurtleEventType.TYPE_OVERDUE_TOKEN));//发送消息事件
                                 return;
+                            }
+
+                            JSONObject userLateast = response.optJSONObject("user");//更新最新的数据，并发送事件，更新
+                            if(userLateast != null){
+                                SelfInfo.inst()._userInfo.updateFromJson(userLateast);
+                                EventBus.getDefault().post(new TurtleEvent(TurtleEventType.TYPE_USER_INFO_UPDATE));//发送消息事件
                             }
                         }
                         @Override

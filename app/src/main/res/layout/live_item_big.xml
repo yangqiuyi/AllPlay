@@ -35,16 +35,19 @@
                 android:layout_marginTop="5dp"
                 />
             <RelativeLayout
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/user_name">
 
-                    <ImageView
+                   <ImageView
                         android:id="@+id/user_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@mipmap/img_location" />
+                        android:background="@drawable/img_location" />
+
                     <TextView
+                        android:includeFontPadding="false"
                         android:id="@+id/user_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -55,6 +58,7 @@
 
 
                 <TextView
+                    android:includeFontPadding="false"
                     android:id="@+id/guankan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,17 +67,14 @@
                     android:layout_toLeftOf="@+id/user_see"
                     android:textSize="13sp"
                     android:layout_marginRight="4dp"
-                    android:layout_marginBottom="12dp"
                     />
                 <ImageView
                     android:id="@+id/user_see"
-                    android:layout_width="14dp"
-                    android:layout_height="12dp"
+                    android:layout_width="15dip"
+                    android:layout_height="14dip"
                     android:layout_marginRight="13dp"
                     android:layout_alignParentRight="true"
-                    android:background="@mipmap/home_iswatch"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/home_iswatch"
                     />
 
             </RelativeLayout>

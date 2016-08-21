@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:background="@color/titlebar_background">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/user_info_touxiang"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="160dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        fresco:roundAsCircle="true"
+        fresco:placeholderImage="@drawable/second"
+        android:layout_centerHorizontal="true"
+        ></com.facebook.drawee.view.SimpleDraweeView>
+
+    <LinearLayout
+        android:id="@+id/linear_n"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/user_info_touxiang"
+        android:layout_marginTop="16dp">
+
+        <!-- nick sex level -->
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- nick -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/user_nick"
+                android:text="yabber"
+                android:textSize="18sp"
+                android:textColor="@color/titlebar_text"
+                android:layout_below="@+id/user_info_touxiang"
+                android:includeFontPadding="false"
+                />
+
+            <!-- sex -->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/img_location"
+                android:layout_marginLeft="5dp"
+                />
+
+            <!-- level -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/titlebar_background"
+               >
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/img_location"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/user_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="@color/titlebar_text"
+                    android:textSize="10sp"
+                    android:layout_gravity="center"
+                   />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <!--id idNum-->
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/user_ID"
+                android:text="ID:"
+                android:textSize="12sp"
+                android:textColor="@color/titlebar_text"
+                />
+            <TextView
+                android:id="@+id/user_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3000455"
+                android:textColor="@color/titlebar_text"
+                android:textSize="12sp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/user_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="编辑个性签名"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#fff"
+            android:textSize="12sp"/>
+        <!-- send 钻石-->
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/user_icon_backgroud_white"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sent"
+                android:textColor="@color/titlebar_text"
+                android:textSize="15sp"
+                android:layout_gravity="center_vertical"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="15sp"
+                android:textColor="@color/titlebar_text"
+                android:layout_marginLeft="7dp"
+                android:layout_gravity="center_vertical"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/send_gold_icon"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+        <!-- 粉丝呢亲密度-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="粉丝亲密度"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/titlebar_text"
+                android:layout_marginTop="10dp"
+                />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/second"
+                android:layout_marginLeft="120dp"/>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/second"/>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/second"
+               />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

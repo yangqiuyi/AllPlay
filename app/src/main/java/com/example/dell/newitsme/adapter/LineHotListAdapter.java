@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.controller.ActivityCBase;
 import com.example.controller.HotDataController;
 import com.example.dell.newitsme.R;
+import com.example.dell.newitsme.viewholder.HotListHolder;
 import com.example.model.LiveItemModel;
 import com.example.net.ImageUrlParser;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -23,6 +24,7 @@ public class LineHotListAdapter extends BaseAdapter{
         private  List<LiveItemModel>  mDatas = new ArrayList<>();
         private HotDataController _hotDataController;
         private static final String TAG = "LineHotListAdapter";
+
 
         public LineHotListAdapter(ActivityCBase activityCBase){
             inflater = LayoutInflater.from(activityCBase);
@@ -61,39 +63,13 @@ public class LineHotListAdapter extends BaseAdapter{
             View view = convertView;
             if (view == null) {
                 view = inflater.inflate(R.layout.live_item_big, parent, false);
-                ViewHolder viewHolder = new ViewHolder();
-                viewHolder.address = (TextView) view.findViewById(R.id.user_address);//相当于布局live_item_big中地址为user_address的textview为address，以后便可通过adress操作textview
-                viewHolder.name = (TextView) view.findViewById(R.id.user_name);
-                viewHolder.people = (TextView) view.findViewById(R.id.guankan);
-                viewHolder.picture = (SimpleDraweeView) view.findViewById(R.id.user_picture);
-                viewHolder.touxiang = (SimpleDraweeView) view.findViewById(R.id.touxiang);
-                view.setTag(viewHolder);
+                HotListHolder hotListHolder = new HotListHolder();
+                hotListHolder.attach(view);
+                view.setTag(hotListHolder);
             }
-
-            ViewHolder viewHolder = (ViewHolder) view.getTag();
+            HotListHolder hotListHolder = (HotListHolder) view.getTag();//缓存机制（简单的引用）
             LiveItemModel  liveItem =  mDatas.get(position);
-            //
-            if (liveItem.city == null || "".equals(liveItem.city)){
-                viewHolder.address.setText("难道是火星？");
-            }else{
-                viewHolder.address.setText(liveItem.city);
-            }
-            //
-            viewHolder.name.setText(liveItem.liveCreator.nick);
-            viewHolder.people.setText(String.valueOf(liveItem.online_users));
-            //portrait 链接
-            String portrait =  liveItem.liveCreator.portrait;//每一个item在ArrayList中的位置的liveCreator(UserInfoModel)的图片的链接
-            viewHolder.picture.setImageURI(ImageUrlParser.coverImageUrl(portrait));//获得方面图片链接的方法ImageUrlParser.coverImageUrl
-            viewHolder.touxiang.setImageURI(ImageUrlParser.avatarRoomHeadImageUrl(portrait));//获得头像图片链接的方法
+            hotListHolder.setData(liveItem);
             return view;
         }
-
-      private class ViewHolder {
-          public TextView address;
-          public TextView name;
-          public TextView people;
-          public SimpleDraweeView picture;
-          public SimpleDraweeView touxiang;
-      }
-
     }

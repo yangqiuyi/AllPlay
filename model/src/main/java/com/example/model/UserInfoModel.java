@@ -14,12 +14,12 @@ import org.json.JSONObject;
 public class UserInfoModel {
 
     public int uid;
-    public String nick;
-    public String portrait;
+    public String nick = "";
+    public String portrait = "";
     public int gender;
-    public  String location;
+    public  String location = "";
     public int ulevel;
-    public  String description;
+    public  String description = "";
 
     public void updateFromJson(JSONObject jsonObject) {
         if (jsonObject == null){
@@ -34,9 +34,5 @@ public class UserInfoModel {
         ulevel  = jsonObject.optInt("ulevel");
 
     }
-
-
-
-
 
 }
