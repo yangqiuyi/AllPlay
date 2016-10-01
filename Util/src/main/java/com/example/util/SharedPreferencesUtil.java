@@ -13,6 +13,7 @@ public class SharedPreferencesUtil {
      */
     private static final String FILE_NAME = "share_turtle_show";
     public static final String KEY_SAVE_USERINFO = "KEY_SAVE_USERINFO";
+    public static final String KEY_TOKEN = "KEY_TOKEN";
 
     /**
      * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法

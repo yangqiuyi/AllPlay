@@ -37,20 +37,22 @@ import org.json.JSONObject;
 public class LiveItemModel {
     public static final String TAG = "LiveItemModel";
 
-    public String  city;
-    public String id;
+    public String  city = "";
+    public String id = "";
     public int group;
-    public String  image;
-    public int online_users;
+    public String  image = "";
+    public int online_users =0;
+    public  int click_users =0;
     public int pub_stat;
     public int room_id;
-    public String  share_addr;
-    public String  status;
-    public String  stream_addr;
-    public String  name;
+    public String  share_addr = "";
+    public String  status = "";
+    public String  stream_addr = "";
+    public String  name = "";
     public int version;
-    public String  score;
+    public String  score = "";
     public int real_score;
+
     public UserInfoModel liveCreator = new UserInfoModel();
 
 
@@ -63,6 +65,7 @@ public class LiveItemModel {
         }
         liveItem.group = jsonObject.optInt("group");
         liveItem.online_users = jsonObject.optInt("online_users");
+        liveItem.click_users = jsonObject.optInt("click_users");
         liveItem.city = jsonObject.optString("city");
         liveItem.name = jsonObject.optString("name");
         liveItem.image = jsonObject.optString("image");

@@ -93,6 +93,11 @@ public class LoginByEmailActivity extends Activity {
                     if (dm_error == 0) {//ok
                         final  String token = response.optString("session", "");
                         final int uid = response.optInt("uid");
+                        //文件
+                        SharedPreferencesUtil.setParam(context, SharedPreferencesUtil.KEY_TOKEN, token);
+                        //内存
+                        SelfInfo.inst()._userInfo.token = token;
+                        SelfInfo.inst()._userInfo.uid = uid;
 
                         //获取个人信息
                         ClientApi.info(uid, new ApiListener(){

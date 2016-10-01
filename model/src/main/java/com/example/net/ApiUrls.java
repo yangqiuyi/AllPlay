@@ -1,6 +1,8 @@
 package com.example.net;
 
 import android.util.Log;
+
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -12,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
@@ -46,6 +49,9 @@ public class ApiUrls {
         String md5 = "";
         updateApiMap(md5);
     }
+
+    Request request;
+    List requests;
 
     /*从服务器更新api列表*/
     private void updateApiMap(final String oldMd5) {

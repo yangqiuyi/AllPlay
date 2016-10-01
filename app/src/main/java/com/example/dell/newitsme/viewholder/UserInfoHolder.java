@@ -1,7 +1,7 @@
 package com.example.dell.newitsme.viewholder;
 
 
-import android.text.Layout;
+
 import android.view.View;
 import android.widget.TextView;
 

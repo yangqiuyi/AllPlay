@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:listDivider">@drawable/divider_bg</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -22,5 +23,7 @@
         <item name="android:layout_height">12.0dip</item>
         <item name="android:background">@drawable/user_icon_bigenter_nor_2x</item>
     </style>
+
+
 
 </resources>

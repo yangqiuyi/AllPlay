@@ -12,8 +12,6 @@ import com.example.controller.HotDataController;
 import com.example.dell.newitsme.R;
 import com.example.dell.newitsme.viewholder.HotListHolder;
 import com.example.model.LiveItemModel;
-import com.example.net.ImageUrlParser;
-import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +23,8 @@ public class LineHotListAdapter extends BaseAdapter{
         private HotDataController _hotDataController;
         private static final String TAG = "LineHotListAdapter";
 
+       // private
+       // on
 
         public LineHotListAdapter(ActivityCBase activityCBase){
             inflater = LayoutInflater.from(activityCBase);
@@ -53,6 +53,12 @@ public class LineHotListAdapter extends BaseAdapter{
             return mDatas.get(position);
         }
 
+
+    /*private boolean mRequest = true;
+    public void setResquet(boolean resquet){
+        mRequest = resquet;
+    }
+*/
         @Override
         public long getItemId(int position) {
             return position;
@@ -65,10 +71,11 @@ public class LineHotListAdapter extends BaseAdapter{
                 view = inflater.inflate(R.layout.live_item_big, parent, false);
                 HotListHolder hotListHolder = new HotListHolder();
                 hotListHolder.attach(view);
-                view.setTag(hotListHolder);
+                view.setTag(hotListHolder);//设置标签 的数据为hotListHolder
             }
-            HotListHolder hotListHolder = (HotListHolder) view.getTag();//缓存机制（简单的引用）
+            HotListHolder hotListHolder = (HotListHolder) view.getTag();//缓存机制（简单的引用），取出标签的数据从而达到复用
             LiveItemModel  liveItem =  mDatas.get(position);
+          /*  hotListHolder.setResquet(mRequest);//todo*/
             hotListHolder.setData(liveItem);
             return view;
         }

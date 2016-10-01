@@ -1,11 +1,13 @@
 package com.example.dell.newitsme.fragment;
 
+;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,9 +28,6 @@ public class FragmentHot extends Fragment {
     private LineHotListAdapter _hotListAdapter;
     private ActivityCBase _activityCBase;
 
-    public FragmentHot() {
-    }
-
     public void init(ActivityCBase activityCBase){
         _activityCBase = activityCBase;
     }
@@ -40,6 +39,35 @@ public class FragmentHot extends Fragment {
         mListView = (ListView)root.findViewById(R.id.listviw);
         mTextView =  (TextView) root.findViewById(R.id.tv_loading);
         _hotListAdapter = new LineHotListAdapter(_activityCBase);
+        //监听listview是否滑动
+
+      /*  mListView.setOnScrollListener(new AbsListView.OnScrollListener(){
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                      switch (scrollState){
+                          case(AbsListView.OnScrollListener.SCROLL_STATE_IDLE):{//停止滚动
+                              //停止滑动的时候就请求
+                              _hotListAdapter.setResquet(true);
+                              break;
+                          }
+                          case AbsListView.OnScrollListener.SCROLL_STATE_FLING:{//滚动状态
+                              _hotListAdapter.setResquet(false);
+                              break;
+                          }
+                          case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL: {//触摸后滚动
+                              _hotListAdapter.setResquet(true);
+                              break;
+                          }
+                      }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });*/
+
+     //   mListView.setOn
         mListView.setAdapter(_hotListAdapter);
 
         //这里是接收事件类的注册事件

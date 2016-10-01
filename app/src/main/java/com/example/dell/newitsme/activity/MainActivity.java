@@ -4,22 +4,28 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.controller.ActivityCBase;
 import com.example.dell.newitsme.R;
 import com.example.dell.newitsme.activity.base.ActivityEventBase;
-import com.example.dell.newitsme.fragment.FragmentHome;
+import com.example.dell.newitsme.fragment.FragmentHall;
+import com.example.dell.newitsme.fragment.FragmentHot;
 import com.example.dell.newitsme.fragment.FragmentMe;
 import com.example.util.Devices;
 
 public class MainActivity extends ActivityEventBase implements View.OnClickListener{
 
-    private FragmentHome _home;
+    private FragmentHall _hall;
+    private FragmentHot _home;
     private FragmentMe _Me;
     private boolean isClicked = false;//按键防抖
     private  final String TAG = "MainActivity";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Devices.initDisplayMetrics(getWindowManager());
         //
@@ -30,6 +36,7 @@ public class MainActivity extends ActivityEventBase implements View.OnClickListe
         me.setOnClickListener(this);
         //
         initFragmentLayout();
+
     }
 
     @Override
@@ -38,12 +45,12 @@ public class MainActivity extends ActivityEventBase implements View.OnClickListe
     }
 
     private void initFragmentLayout(){
-        _home = new FragmentHome();
-        _home.init(this);
+        _hall = new FragmentHall();
+        _hall.initParam(this);
         _Me = new FragmentMe();
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.fragment_container, _home);
+        ft.add(R.id.fragment_container, _hall);
         ft.add(R.id.fragment_container, _Me);
         ft.hide(_Me);
         ft.commit();
@@ -52,13 +59,13 @@ public class MainActivity extends ActivityEventBase implements View.OnClickListe
     private void onHome(){
         FragmentTransaction ft1 = getSupportFragmentManager().beginTransaction();
         ft1.hide(_Me);
-        ft1.show(_home);
+        ft1.show(_hall);
         ft1.commit();
     }
 
     private void onMe(){
         FragmentTransaction ft2 = getSupportFragmentManager().beginTransaction();
-        ft2.hide(_home);
+        ft2.hide(_hall);
         ft2.show(_Me);
         ft2.commit();
     }

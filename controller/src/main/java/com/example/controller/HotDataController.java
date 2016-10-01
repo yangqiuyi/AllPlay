@@ -42,14 +42,14 @@ public class HotDataController extends ControllerBase{
         if(response == null) return null;
 
         List<LiveItemModel> itemList = new ArrayList<>();
-        JSONArray jsonArray = response.optJSONArray("lives");
+        JSONArray jsonArray = response.optJSONArray("lives");//选中返回字段中的lives lives 是一个数组
         if (jsonArray != null) {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject obj = jsonArray.optJSONObject(i);//返回一个JSONObject对象 ---》obj
                 if (obj == null) {
                     break;
                 }
-                LiveItemModel live = LiveItemModel.fromJson(obj);
+                LiveItemModel live = LiveItemModel.fromJson(obj);//调用LiveItemModel.fromJson(obj)去解析，数组lives中的每一个元素item，从而把名字，地址。。解出来
                 itemList.add(live);
             }
         }

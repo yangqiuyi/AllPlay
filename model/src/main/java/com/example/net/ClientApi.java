@@ -7,6 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.SelfInfo;
 import com.example.util.encrypt.Encrypt;
 
 import org.json.JSONObject;
@@ -228,9 +229,27 @@ public class ClientApi {
         sendRequest(Request.Method.GET, urlHead, param, listener);
     }
 
+    public static String getDefaultParam()
+    {
+        StringBuilder b = new StringBuilder();
+        String token = SelfInfo.inst()._userInfo.token;
 
+        if (!TextUtils.isEmpty(token)) {
+            int uid = SelfInfo.uid();
 
+            b.append("uid=" + uid);
+            b.append("&sid=" + URLEncoder.encode(token));
+        }
+        if (b.length() != 0){
+            b.append("&");
+        }
 
+      //  String dev = getDeviceParam();
+      //  b.append(dev);
+
+        return b.toString();
+
+    }
 
     private static void sendRequest(int method,String url,Map params,final ApiListener listener) {
         //get    Request请求方式
@@ -240,6 +259,9 @@ public class ClientApi {
                 url = appendUrlParam(url, posfix);//用?& 把key_value键值存放在
             }
         }
+
+        //默认参数
+        url = appendUrlParam(url,getDefaultParam());
 
         //post get   Request请求方式
         final String fullUrl = url;
@@ -268,8 +290,38 @@ public class ClientApi {
             }
         });
 
-        Queue.inst()._requestQueue.add(request);
+        Queue.inst()._requestQueue.add(request);//volley框架请求http，把请求放到一个RequestQueue队列里面
     }
+
+
+
+    /**
+     * 获取最新页面的数据
+     * @param count
+     * @param listener
+     */
+    public static void getNewList(int count,final ApiListener listener){
+        Map params = new HashMap();
+        params.put("count" ,count);
+        callCmd_GET(LIVE_LATEST ,params ,listener);
+    }
+
+    /*首页关注的直播列表*/
+    public static void focusLivingList(final ApiListener listener) {
+        Map params = new HashMap();
+        callCmd_GET(LIVE_HOMEPAGE, params, listener);
+    }
+
+    /*首页回放列表*/
+    public static void recorderList(int start ,final ApiListener listener)
+    {
+        Map params = new HashMap();
+        params.put("start" ,start);
+        params.put("count" ,50);
+        callCmd_GET(FOLLOW_RECORD, params, listener);
+
+    }
+
 
     private static final String PLATFORM = "platform";
     private static final String TOKEN = "access_token";

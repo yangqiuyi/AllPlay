@@ -17,6 +17,8 @@ import com.example.net.ApiListener;
 import com.example.net.ClientApi;
 import com.example.util.JsonHelper;
 import com.example.util.SharedPreferencesUtil;
+import com.example.util.StrUtil;
+
 import org.json.JSONObject;
 
 import de.greenrobot.event.EventBus;
@@ -39,9 +41,10 @@ public class LauncherActivity extends ActivityEventBase {
         if(type == TurtleEventType.TYPE_API_DATA_OK ){
             /*数据回来了就去本地看看有没有个人信息，有就跳到主界面，没有就跳到登录界面*/
             //判断本地是否有个人信息，
-           Object localUser =  SharedPreferencesUtil.getParam(this, SharedPreferencesUtil.KEY_SAVE_USERINFO,"");
+            String localUser =  (String)SharedPreferencesUtil.getParam(this, SharedPreferencesUtil.KEY_SAVE_USERINFO,"");
+            String token  = (String)SharedPreferencesUtil.getParam(this, SharedPreferencesUtil.KEY_TOKEN,"");
 
-            if(localUser.equals("")){
+            if(localUser == null || StrUtil.isEmpty(token)){
                 //没有本地的数据，则跳到登录界面
                 startActivity(new Intent(mActivity, LoginByEmailActivity.class));
                 finish();
@@ -60,6 +63,7 @@ public class LauncherActivity extends ActivityEventBase {
                     JSONObject user = jsonObject.optJSONObject("user");
                     /*  "user":{"uid":3000957,"gender":0,"nick":"yabber0914","location":"","ulevel":2,"description":"","portrait":""}, */
                     SelfInfo.inst()._userInfo.updateFromJson(user);
+                    SelfInfo.inst()._userInfo.token = token;
                  ;
                     ClientApi.info(SelfInfo.inst()._userInfo.uid,new ApiListener() { //解析本地数据到内存之后，检查token有没有过期
                         @Override
@@ -73,6 +77,13 @@ public class LauncherActivity extends ActivityEventBase {
                                 EventBus.getDefault().post(new TurtleEvent(TurtleEventType.TYPE_OVERDUE_TOKEN));//发送消息事件
                                 return;
                             }
+
+                            /*
+                            * {
+                                    dm_error: 1,
+                                    error_msg: "token认证失败:-1"
+                                    }
+                            * */
 
                             JSONObject userLateast = response.optJSONObject("user");//更新最新的数据，并发送事件，更新
                             if(userLateast != null){

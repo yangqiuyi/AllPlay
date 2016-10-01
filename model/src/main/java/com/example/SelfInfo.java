@@ -15,5 +15,9 @@ public class SelfInfo {
         return g_inst;
     }
 
+    public static int uid() {
+        return  inst()._userInfo.uid;
+    }
+
 
 }

@@ -21,6 +21,9 @@ public class UserInfoModel {
     public int ulevel;
     public  String description = "";
 
+    //
+    public String token = "";
+
     public void updateFromJson(JSONObject jsonObject) {
         if (jsonObject == null){
             return;

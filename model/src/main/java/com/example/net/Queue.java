@@ -6,7 +6,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 public class Queue {
-    private static Queue _queue;
+    private static Queue _queue;//单例模式
 
     public   RequestQueue _requestQueue = null;
 
