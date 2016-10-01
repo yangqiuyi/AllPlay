@@ -18,15 +18,15 @@ import com.example.model.LiveItemModel;
 import java.util.List;
 import de.greenrobot.event.EventBus;
 
-public class FragmentHome extends Fragment {
+public class FragmentHot extends Fragment {
 
-    private static final String TAG = "FragmentHome";
+    private static final String TAG = "FragmentHot";
     private ListView mListView;
     private TextView mTextView;
     private LineHotListAdapter _hotListAdapter;
     private ActivityCBase _activityCBase;
 
-    public FragmentHome() {
+    public FragmentHot() {
     }
 
     public void init(ActivityCBase activityCBase){

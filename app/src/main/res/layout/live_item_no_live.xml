@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120.0dip"
+    android:paddingBottom="5.0dip">
+
+    <ImageView
+        android:id="@id/img_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+        android:focusable="false"
+        android:scaleType="centerCrop"
+        android:src="@color/fouce_nolive_bg" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/hall_no_live_tip"
+            android:textColor="@color/tab_fouce_bg"
+            android:textSize="13.0sp" />
+
+        <Button
+            android:id="@+id/btn_goto_hot"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/goto_hot_height"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10.0dip"
+            android:background="@drawable/dialog_room_btn_bg"
+            android:paddingLeft="20.0dip"
+            android:paddingRight="20.0dip"
+            android:text="@string/hall_goto_hot"
+            android:textColor="@color/white"
+            android:textSize="14.0sp"
+            android:textAllCaps="false"
+            />
+    </LinearLayout>
+</RelativeLayout>
