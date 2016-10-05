@@ -24,6 +24,11 @@
         <item name="android:background">@drawable/user_icon_bigenter_nor_2x</item>
     </style>
 
-
+    <style name="myTransparent">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
 
 </resources>

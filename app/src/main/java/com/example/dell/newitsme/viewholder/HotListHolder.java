@@ -1,13 +1,15 @@
 package com.example.dell.newitsme.viewholder;
 
-import android.util.Log;
+
 import android.view.View;
 import android.widget.TextView;
-
 import com.example.dell.newitsme.R;
+import com.example.event.TurtleEvent;
+import com.example.event.TurtleEventType;
 import com.example.model.LiveItemModel;
 import com.example.net.ImageUrlParser;
 import com.facebook.drawee.view.SimpleDraweeView;
+import de.greenrobot.event.EventBus;
 
 public class HotListHolder {
 
@@ -28,12 +30,6 @@ public class HotListHolder {
         mTouxiang = (SimpleDraweeView) layout.findViewById(R.id.touxiang);
     }
 
-    /*private boolean mRequest = true;
-    public void setResquet(boolean resquet){
-        mRequest = resquet;
-    }
-*/
-
     public void setData( LiveItemModel liveItem){
 
         if(liveItem == null)return;
@@ -47,15 +43,22 @@ public class HotListHolder {
         }
         mPeople.setText(String.valueOf(liveItem.online_users));
 
-       // if(mRequest){
-            //portrait 链接
-            String portrait =  liveItem.liveCreator.portrait;//每一个item在ArrayList中的位置的liveCreator(UserInfoModel)的图片的链接
-            mPicture.setImageURI(ImageUrlParser.coverImageUrl(portrait));//获得方面图片链接的方法ImageUrlParser.coverImageUrl
-            mTouxiang.setImageURI(ImageUrlParser.avatarRoomHeadImageUrl(portrait));//获得头像图片链接的方法
+        //portrait 链接
+        String portrait =  liveItem.liveCreator.portrait;//每一个item在ArrayList中的位置的liveCreator(UserInfoModel)的图片的链接
+        mPicture.setImageURI(ImageUrlParser.coverImageUrl(portrait));//获得方面图片链接的方法ImageUrlParser.coverImageUrl
+        mTouxiang.setImageURI(ImageUrlParser.avatarRoomHeadImageUrl(portrait));//获得头像图片链接的方法
 
-       /* }else {
-            Log.i(TAG,"request= " + mRequest);
-           return;
-        }*/
     }
+
+     public void onclick(final LiveItemModel liveItemModel){
+         mPicture.setOnClickListener(new View.OnClickListener() {
+
+             @Override
+             public void onClick(View v) {
+                 EventBus.getDefault().post(
+                         new TurtleEvent(TurtleEventType.TYPE_USER_ON_CLICK_, liveItemModel));
+             }
+
+         });
+     }
 }

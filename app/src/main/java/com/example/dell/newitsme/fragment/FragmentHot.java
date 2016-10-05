@@ -1,19 +1,19 @@
 package com.example.dell.newitsme.fragment;
 
 ;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.example.controller.ActivityCBase;
 import com.example.dell.newitsme.R;
+import com.example.dell.newitsme.activity.LiveRoomActivity;
 import com.example.dell.newitsme.adapter.LineHotListAdapter;
+import com.example.dell.newitsme.controller.ActivityCBase;
 import com.example.event.TurtleEvent;
 import com.example.event.TurtleEventType;
 import com.example.model.LiveItemModel;
@@ -89,6 +89,14 @@ public class FragmentHot extends Fragment {
             mListView.setVisibility(View.VISIBLE);
             mTextView.setVisibility(View.GONE);
             Log.i(TAG, "TYPE_HOT_DATA_OK");
+        }else if(type == TurtleEventType.TYPE_USER_ON_CLICK_){
+            LiveItemModel itemModel = event.getParam();
+            Intent intent = new Intent();
+            intent.setClass(_activityCBase, LiveRoomActivity.class);
+            Bundle mBundle = new Bundle();
+            mBundle.putParcelable(LiveItemModel.TAG, itemModel);
+            intent.putExtras(mBundle);
+            _activityCBase.startActivity(intent);
         }
     }
 
@@ -97,12 +105,6 @@ public class FragmentHot extends Fragment {
         super.onDestroy();
         EventBus.getDefault().unregister(this);//当这个类销毁的时候解除注册
     }
-
-    //
-
-    //
-
-    //
 
 
 }

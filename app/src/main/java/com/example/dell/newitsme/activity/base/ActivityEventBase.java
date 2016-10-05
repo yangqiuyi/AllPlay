@@ -2,7 +2,7 @@ package com.example.dell.newitsme.activity.base;
 
 import android.widget.Toast;
 
-import com.example.controller.ActivityCBase;
+import com.example.dell.newitsme.controller.ActivityCBase;
 import com.example.event.TurtleEvent;
 import com.example.event.TurtleEventType;
 

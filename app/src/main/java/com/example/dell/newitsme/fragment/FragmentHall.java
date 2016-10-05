@@ -7,12 +7,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-
-import com.example.controller.ActivityCBase;
 import com.example.dell.newitsme.R;
-import com.example.dell.newitsme.activity.MainActivity;
 import com.example.dell.newitsme.adapter.ViewPagerAdapter;
+import com.example.dell.newitsme.controller.ActivityCBase;
 
 
 public class FragmentHall  extends Fragment{

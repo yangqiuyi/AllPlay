@@ -1,15 +1,19 @@
-package com.example.controller;
+package com.example.dell.newitsme.controller;
 
 import android.util.Log;
+
 import com.example.event.TurtleEvent;
 import com.example.event.TurtleEventType;
 import com.example.model.LiveItemModel;
 import com.example.net.ApiListener;
 import com.example.net.ClientApi;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import de.greenrobot.event.EventBus;
 
 /**
@@ -20,7 +24,7 @@ import de.greenrobot.event.EventBus;
  *
  * */
 
-public class HotDataController extends ControllerBase{
+public class HotDataController extends ControllerBase {
 
     private final String TAG = "HotDataController";
 

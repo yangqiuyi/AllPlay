@@ -24,7 +24,7 @@ public class UserInfoModel {
     //
     public String token = "";
 
-    public void updateFromJson(JSONObject jsonObject) {
+    public  void updateFromJson(JSONObject jsonObject) {
         if (jsonObject == null){
             return;
         }
@@ -37,5 +37,7 @@ public class UserInfoModel {
         ulevel  = jsonObject.optInt("ulevel");
 
     }
+
+
 
 }

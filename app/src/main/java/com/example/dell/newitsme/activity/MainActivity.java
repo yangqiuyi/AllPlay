@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
-
-import com.example.controller.ActivityCBase;
 import com.example.dell.newitsme.R;
 import com.example.dell.newitsme.activity.base.ActivityEventBase;
 import com.example.dell.newitsme.fragment.FragmentHall;

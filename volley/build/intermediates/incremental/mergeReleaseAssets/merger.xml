@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="F:\code\NewItsme\volley\src\main\assets"/></dataSet><dataSet config="release"><source path="F:\code\NewItsme\volley\src\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/yabber/Documents/AllPlay/volley/src/main/assets"/><source path="/Users/yabber/Documents/AllPlay/volley/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/Users/yabber/Documents/AllPlay/volley/src/release/assets"/></dataSet></merger>

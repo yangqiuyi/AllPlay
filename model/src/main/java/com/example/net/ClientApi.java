@@ -322,6 +322,18 @@ public class ClientApi {
 
     }
 
+    /*拉取房间的用户列表*/
+    public static void roomUsers(String id,int start,int count,final ApiListener listener)
+    {
+        Log.i(TAG, "roomUsers.id"+id);
+        Map params = new HashMap();
+        params.put("id",id);
+        params.put("start",start);
+        params.put("count", count);
+        callCmd_GET(LIVE_USERS, params, listener);
+    }
+
+
 
     private static final String PLATFORM = "platform";
     private static final String TOKEN = "access_token";

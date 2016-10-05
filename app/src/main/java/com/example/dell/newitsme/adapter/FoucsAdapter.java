@@ -4,9 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-
-import com.example.controller.ActivityCBase;
 import com.example.dell.newitsme.R;
+import com.example.dell.newitsme.controller.ActivityCBase;
 import com.example.dell.newitsme.viewholder.FoucsListHolder;
 import com.example.dell.newitsme.viewholder.HotListHolder;
 import com.example.model.ListViewAdapterModel;

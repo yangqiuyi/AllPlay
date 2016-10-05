@@ -68,6 +68,7 @@ public class FragmentNew extends Fragment {
                         LiveItemModel itemModel =  LiveItemModel.fromJson(live);//调用LiveItemModel.fromJson(obj)去解析，数组lives中的每一个元素item，从而把名字，地址。。解出来
                         itemList.add(itemModel);//解到的每一个item数据放到集合里面
                     }
+                    mAdapter.notifyDataSetChanged();
                 }catch (Exception e){
                     Log.e(TAG,"loadApiMap Exception:" + e.toString());
                 }

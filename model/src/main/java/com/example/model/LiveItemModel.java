@@ -1,8 +1,12 @@
 package com.example.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import org.json.JSONObject;
+
+import java.io.Serializable;
 
 /***
  *   lives: [
@@ -34,34 +38,36 @@ import org.json.JSONObject;
      },
  *
  * */ //房间模型，
-public class LiveItemModel {
+public class LiveItemModel implements Parcelable {
+
     public static final String TAG = "LiveItemModel";
 
-    public String  city = "";
+
+    public String city = "";
     public String id = "";
     public int group;
-    public String  image = "";
-    public int online_users =0;
-    public  int click_users =0;
+    public String image = "";
+    public int online_users = 0;
+    public int click_users = 0;
     public int pub_stat;
     public int room_id;
-    public String  share_addr = "";
-    public String  status = "";
-    public String  stream_addr = "";
-    public String  name = "";
+    public String share_addr = "";
+    public String status = "";
+    public String stream_addr = "";
+    public  String name = "";
     public int version;
-    public String  score = "";
+    public String score = "";
     public int real_score;
 
     public UserInfoModel liveCreator = new UserInfoModel();
 
 
-    public static LiveItemModel fromJson(JSONObject jsonObject){
+    public static LiveItemModel fromJson(JSONObject jsonObject) {
         LiveItemModel liveItem = new LiveItemModel();
         liveItem.id = jsonObject.optString("id");
 
-        if (liveItem.id == null || liveItem.id == ""){
-            Log.i(TAG,"null or empty id!");
+        if (liveItem.id == null || liveItem.id == "") {
+            Log.i(TAG, "null or empty id!");
         }
         liveItem.group = jsonObject.optInt("group");
         liveItem.online_users = jsonObject.optInt("online_users");
@@ -72,11 +78,63 @@ public class LiveItemModel {
         liveItem.share_addr = jsonObject.optString("share_addr");
 
         JSONObject creator = jsonObject.optJSONObject("creator");
-        if (creator != null){
+        if (creator != null) {
             liveItem.liveCreator.updateFromJson(creator);
         }
         return liveItem;
     }
 
+    public String getNick() {
+        return  liveCreator.nick;
+    }
+
+    public int getOnline_users(){
+        return  online_users;
+    }
+
+    public String getPortrait() {
+        return  liveCreator.portrait;
+    }
+
+    public  String getId(){
+        return  id;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+         dest.writeString(liveCreator.nick);
+         dest.writeInt(online_users);
+        dest.writeString(liveCreator.portrait);
+        dest.writeString(id);
+    }
+
+    public static final Parcelable.Creator<LiveItemModel> CREATOR = new Creator<LiveItemModel>() {
+
+        public LiveItemModel createFromParcel(Parcel source) {
+            LiveItemModel mLiveItemModel = new LiveItemModel();
+
+            mLiveItemModel.liveCreator.nick = source.readString();
+            mLiveItemModel.online_users = source.readInt();
+            mLiveItemModel.liveCreator.portrait = source.readString();
+            mLiveItemModel.id = source.readString();
+
+
+            return mLiveItemModel;
+        }
+
+        public LiveItemModel[] newArray(int size) {
+            return new LiveItemModel[size];
+        }
+
+
+    };
+
+
 
 }
+

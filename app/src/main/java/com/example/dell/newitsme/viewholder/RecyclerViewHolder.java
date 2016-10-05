@@ -2,7 +2,6 @@ package com.example.dell.newitsme.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 import com.example.dell.newitsme.R;
 import com.example.model.LiveItemModel;
 import com.example.net.ImageUrlParser;
