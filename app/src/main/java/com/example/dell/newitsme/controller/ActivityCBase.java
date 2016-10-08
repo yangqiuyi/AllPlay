@@ -26,9 +26,10 @@ public abstract class ActivityCBase extends AppCompatActivity {
             }
             _controllers = null;
         }
+
         super.onDestroy();
     }
 
-    }
+}
 
 

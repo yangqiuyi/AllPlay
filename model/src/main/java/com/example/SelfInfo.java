@@ -19,5 +19,8 @@ public class SelfInfo {
         return  inst()._userInfo.uid;
     }
 
+    public  static  String token(){
+        return  inst()._userInfo.token;
+    }
 
 }

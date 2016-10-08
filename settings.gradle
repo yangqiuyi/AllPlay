@@ -1,1 +1,2 @@
-include ':app', ':Util', ':model', 'volley'
+include ':app', ':Util', ':model', ':volley', ':javatest'
+//, ':streampublisher'

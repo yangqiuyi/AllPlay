@@ -4,14 +4,12 @@ package com.example.dell.newitsme.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
 import com.example.dell.newitsme.R;
 import com.example.dell.newitsme.viewholder.LiveRoomRecyclerViewHolder;
-import com.example.dell.newitsme.viewholder.RecyclerViewHolder;
-import com.example.model.LiveItemModel;
 import com.example.model.UserInfoModel;
-
 import java.util.List;
+
+//数据和UI匹配
 
 public class LiveRoomRecyclerViewAdapter extends RecyclerView.Adapter{
 
@@ -38,6 +36,7 @@ public class LiveRoomRecyclerViewAdapter extends RecyclerView.Adapter{
         return mliveRoomRecyclerViewHolder;
     }
 
+//设置数据
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder mliveRoomRecyclerViewHolder, int position) {
         LiveRoomRecyclerViewHolder  liveRoomRecyclerViewHolder = (LiveRoomRecyclerViewHolder) mliveRoomRecyclerViewHolder;

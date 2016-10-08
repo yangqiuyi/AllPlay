@@ -100,6 +100,10 @@ public class LiveItemModel implements Parcelable {
         return  id;
     }
 
+    public int getUid(){
+        return  liveCreator.uid;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -111,6 +115,7 @@ public class LiveItemModel implements Parcelable {
          dest.writeInt(online_users);
         dest.writeString(liveCreator.portrait);
         dest.writeString(id);
+        dest.writeInt(liveCreator.uid);
     }
 
     public static final Parcelable.Creator<LiveItemModel> CREATOR = new Creator<LiveItemModel>() {
@@ -122,7 +127,7 @@ public class LiveItemModel implements Parcelable {
             mLiveItemModel.online_users = source.readInt();
             mLiveItemModel.liveCreator.portrait = source.readString();
             mLiveItemModel.id = source.readString();
-
+            mLiveItemModel.liveCreator.uid = source.readInt();
 
             return mLiveItemModel;
         }

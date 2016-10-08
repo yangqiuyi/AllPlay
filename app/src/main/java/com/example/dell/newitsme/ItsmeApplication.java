@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.example.dell.newitsme.network.StreamHostRouter;
+import com.example.dell.newitsme.network.StreamServerRouter;
 import com.example.net.ClientApi;
 import com.example.net.Queue;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -15,11 +17,20 @@ import com.squareup.okhttp.OkHttpClient;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class ItsmeApplication  extends Application {
 
+    private static ItsmeApplication mApp;
+    
+    public static ItsmeApplication getInstance(){
+        return mApp;
+    }
+    
+    
     @Override
     public void onCreate() {
         super.onCreate();
+        mApp = this;
         initApp(getApplicationContext());
     }
 
@@ -27,6 +38,8 @@ public class ItsmeApplication  extends Application {
         Queue.inst().init(context);//消息队列的单例
         ClientApi.init();
         frescoInit(context);
+        StreamHostRouter.inst().init();
+
 
     }
 
